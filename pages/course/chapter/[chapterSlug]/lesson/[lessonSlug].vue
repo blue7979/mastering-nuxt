@@ -2,27 +2,44 @@
 const course = useCourse();
 const route = useRoute();
 
-const chapter = computed(() => course.chapters.find(
-  (c) => c.slug === route.params.chapterSlug,
-));
+definePageMeta({
+  middleware: [function ({ params }) {
+    // const course = useCourse();
 
-if (!chapter.value) {
-  throw createError({
-    statusCode: 404,
-    message: 'Chapter not found',
-  });
-}
+    // const chapter = course.chapters.find(
+    //   (chapter) => chapter.slug === params.chapterSlug,
+    // );
+
+    // if (!chapter) {
+    //   return abortNavigation(createError({
+    //     statusCode: 404,
+    //     message: 'Chapter not found',
+    //   }));
+    // }
+
+    // const lesson = chapter.lessons.find(
+    //   (lesson) => lesson.slug === params.lessonSlug,
+    // );
+
+    // if (!lesson) {
+    //   return abortNavigation(createError({
+    //     statusCode: 404,
+    //     message: 'Lesson not found',
+    //   }));
+    // }
+  }],
+  validate({ params }) {
+    return true;
+  },
+});
+
+const chapter = computed(() => course.chapters.find(
+  (chapter) => chapter.slug === route.params.chapterSlug,
+));
 
 const lesson = computed(() => chapter.value.lessons.find(
-  (l) => l.slug === route.params.lessonSlug,
+  (lesson) => lesson.slug === route.params.lessonSlug,
 ));
-
-if (!lesson.value) {
-  throw createError({
-    statusCode: 404,
-    message: 'Lesson not found',
-  });
-}
 
 const title = computed(() => `${lesson.value.title} - ${course.title}`);
 useHead({
