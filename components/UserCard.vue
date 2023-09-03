@@ -1,5 +1,27 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 const user = useSupabaseUser();
+const { auth } = useSupabaseClient();
+
+const logout = async () => {
+  const { error } = await auth.signOut();
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  try {
+    await $fetch('/api/_supabase/session', {
+      method: 'POST',
+      body: { event: 'SIGNED_OUT', session: null },
+    });
+    user.value = null;
+  } catch (e) {
+    console.error(error);
+  }
+
+  await navigateTo('/login');
+};
 
 const name = computed(
   () => user?.value.user_metadata.user_name,
@@ -22,7 +44,10 @@ const profile = computed(
       <div class="font-medium">
         {{ name }}
       </div>
-      <button class="text-sm underline text-slate-500">
+      <button
+        class="text-sm underline text-slate-500"
+        @click="logout"
+      >
         Log out
       </button>
     </div>
