@@ -1,8 +1,8 @@
 import { QueryChapterLesson } from '~/types/Queries';
-import course from '~/server/courseData';
 import {
-  Chapter, Course, Lesson, LessonWithPath,
+  Chapter, Course, LessonWithPath,
 } from '~/types/Course';
+import course from '~/server/courseData';
 
 course as Course;
 

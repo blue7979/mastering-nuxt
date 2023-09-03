@@ -1,6 +1,10 @@
 <script lnag="ts" setup>
+import useLesson from '~/composables/useLesson';
+
 const course = useCourse();
 const route = useRoute();
+const { chapterSlug, lessonSlug } = route.params;
+const lesson = await useLesson(chapterSlug, lessonSlug);
 
 definePageMeta({
   middleware: ['abort', 'auth'],
@@ -8,10 +12,6 @@ definePageMeta({
 
 const chapter = computed(() => course.chapters.find(
   (c) => c.slug === route.params.chapterSlug,
-));
-
-const lesson = computed(() => chapter.value.lessons.find(
-  (c) => c.slug === route.params.lessonSlug,
 ));
 
 const title = computed(() => `${lesson.value.title} - ${course.title}`);
