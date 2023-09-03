@@ -1,11 +1,16 @@
 import { QueryChapterLesson } from '~/types/Queries';
 import course from '~/server/courseData';
+import {
+  Chapter, Course, Lesson, LessonWithPath,
+} from '~/types/Course';
+
+course as Course;
 
 // "server/routes/api === server/api" is same address
-export default defineEventHandler((event) => {
+export default defineEventHandler((event): LessonWithPath => {
   const { chapterSlug, lessonSlug } = event.context.params as QueryChapterLesson;
 
-  const chapter = course.chapters.find(
+  const chapter: Maybe<Chapter> = course.chapters.find(
     (c) => c.slug === chapterSlug,
   );
 
@@ -27,5 +32,5 @@ export default defineEventHandler((event) => {
     });
   }
 
-  return lesson;
+  return { ...lesson, path: `/course/chapter/${chapterSlug}/lesson/${lessonSlug}` };
 });
