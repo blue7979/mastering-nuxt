@@ -4,6 +4,8 @@ const { query } = useRoute();
 const supabase = useSupabaseClient();
 const user = useSupabaseUser();
 
+// Remember the URL before logging in, and then redirect it to
+// redirect to the existing page after a successful login.
 const login = async () => {
   const redirectTo = `${window.location.origin}${query.redirectTo}`;
   await supabase.auth.signInWithOAuth({

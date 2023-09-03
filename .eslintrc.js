@@ -23,6 +23,8 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     'react-hooks/rules-of-hooks': 'off',
     'import/prefer-default-export': 'off',
+    'import/extensions': 'off',
+    'import/no-unresolved': 'off',
     // 타입스크립트만 사용 가능
     // 'vue/block-lang': ['error',
     //   {
@@ -37,17 +39,6 @@ module.exports = {
     'vue/component-tags-order': ['error', {
       order: ['script', 'template', 'style'],
     }],
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
-        vue: 'never',
-      },
-    ],
   },
   settings: {
     'import/extensions': ['.js', '.jsx', '.ts', '.tsx', '.vue'],
@@ -57,6 +48,7 @@ module.exports = {
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
+        moduleDirectory: ['.', 'node_modules'],
       },
     },
   },
