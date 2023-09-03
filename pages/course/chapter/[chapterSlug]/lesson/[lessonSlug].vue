@@ -3,12 +3,26 @@ const course = useCourse();
 const route = useRoute();
 
 const chapter = computed(() => course.chapters.find(
-  (chapter) => chapter.slug === route.params.chapterSlug,
+  (c) => c.slug === route.params.chapterSlug,
 ));
 
+if (!chapter.value) {
+  throw createError({
+    statusCode: 404,
+    message: 'Chapter not found',
+  });
+}
+
 const lesson = computed(() => chapter.value.lessons.find(
-  (lesson) => lesson.slug === route.params.lessonSlug,
+  (l) => l.slug === route.params.lessonSlug,
 ));
+
+if (!lesson.value) {
+  throw createError({
+    statusCode: 404,
+    message: 'Lesson not found',
+  });
+}
 
 const title = computed(() => `${lesson.value.title} - ${course.title}`);
 useHead({
