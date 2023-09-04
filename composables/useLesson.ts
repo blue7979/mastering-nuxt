@@ -1,19 +1,26 @@
+import { StorageSerializers } from '@vueuse/core';
+import { LessonWithPath } from '~/types/Course';
+
 export default async (
   chapterSlug: string,
   lessonSlug: string,
 ) => {
-  const { data, error } = await useFetch(`/api/course/chapter/${chapterSlug}/lesson/${lessonSlug}`);
+  const url = `/api/course/chapter/${chapterSlug}/lesson/${lessonSlug}`;
+  const lesson = useSessionStorage<LessonWithPath>(url, null, {
+    serializer: StorageSerializers.object,
+  });
 
-  // const { data, error } = await useAsyncData(
-  //   () => $fetch(`/api/course/chapter/${chapterSlug}/lesson/${lessonSlug}`),
-  // );
+  if (!lesson.value) {
+    const { data, error } = await useFetch<LessonWithPath>(url);
 
-  if (error.value) {
-    throw createError({
-      ...error.value,
-      statusMessage: `Could not fetch lesson ${lessonSlug} in chapter ${chapterSlug}`,
-    });
+    lesson.value = data.value;
+    if (error.value) {
+      throw createError({
+        ...error.value,
+        statusMessage: `Could not fetch lesson ${lessonSlug} in chapter ${chapterSlug}`,
+      });
+    }
   }
 
-  return data;
+  return lesson;
 };

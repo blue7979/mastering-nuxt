@@ -1,0 +1,10 @@
+{
+  "editor.formatOnSave": false,
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "auto-close-tag.disableOnLanguage": [
+    "javascript",
+    "typescript"
+  ]
+}
