@@ -25,6 +25,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
+    'import/no-extraneous-dependencies': 'off',
     // 타입스크립트만 사용 가능
     // 'vue/block-lang': ['error',
     //   {
