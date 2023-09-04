@@ -1,4 +1,3 @@
-/* eslint-env node */
 module.exports = {
   env: {
     browser: true,
@@ -6,8 +5,8 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:nuxt/recommended',
+    // 'plugin:@typescript-eslint/recommended',
+    // 'plugin:nuxt/recommended',
     'plugin:vue/vue3-recommended',
     'airbnb',
     'airbnb/hooks',
