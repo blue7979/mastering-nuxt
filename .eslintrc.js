@@ -6,8 +6,8 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:nuxt/recommended',
+    // 'plugin:@typescript-eslint/recommended',
+    // 'plugin:nuxt/recommended',
     'plugin:vue/vue3-recommended',
     'airbnb',
     'airbnb/hooks',
