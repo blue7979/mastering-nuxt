@@ -1,7 +1,7 @@
-export default defineNuxtRouteMiddleware((to) => {
-  const course = useCourse();
+export default defineNuxtRouteMiddleware(async (to) => {
+  const course = await useCourse();
 
-  const chapter = course.chapters.find(
+  const chapter = course.value.chapters.find(
     (c) => c.slug === to.params.chapterSlug,
   );
 
