@@ -6,13 +6,16 @@ datasource db {
 generator client {
   provider      = "prisma-client-js"
   binaryTargets = ["native", "darwin-arm64"]
-  output        = "../node_modules/.prisma/client"
+
+  // DO NOT USE OUTPUT!
+  // if uncomment under line, eslint in vscode will not work.
+  // output        = "../node_modules/.prisma/client"
 }
 
 model Course {
   id        Int       @id @default(autoincrement())
   title     String
-  chatpers  Chapter[]
+  chapters  Chapter[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
