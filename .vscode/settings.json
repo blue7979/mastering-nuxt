@@ -1,7 +1,8 @@
 {
   "editor.formatOnSave": false,
   "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma"
+    "editor.defaultFormatter": "Prisma.prisma",
+    "editor.formatOnSave": true
   },
   "auto-close-tag.disableOnLanguage": [
     "javascript",
