@@ -1,6 +1,6 @@
-import { LessonWithPath } from '~/types/Course';
+import { Lesson } from '@prisma/client';
 
 export default async (
   chapterSlug: string,
   lessonSlug: string,
-) => useFetchWithCache<LessonWithPath>(`/api/course/chapter/${chapterSlug}/lesson/${lessonSlug}`);
+) => useFetchWithCache<Lesson>(`/api/course/chapter/${chapterSlug}/lesson/${lessonSlug}`);
