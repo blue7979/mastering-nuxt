@@ -2,7 +2,7 @@ import { Lesson } from '@prisma/client';
 
 export type LessonWithPath = Lesson & {
   path: string;
-}
+};
 
 export type Chapter = {
   title: string;
@@ -16,21 +16,21 @@ export type Course = {
   chapters: Chapter[];
 };
 
-export type OutlineBase = {
+type OutlineBase = {
   title: string;
   slug: string;
   number: number;
-}
+};
 
 export type OutlineLesson = OutlineBase & {
   path: string;
-}
+};
 
 export type OutlineChapter = OutlineBase & {
   lessons: OutlineLesson[];
-}
+};
 
 export type CourseMeta = {
   title: string;
-  chapters: OutlineChapter[]
-}
+  chapters: OutlineChapter[];
+};

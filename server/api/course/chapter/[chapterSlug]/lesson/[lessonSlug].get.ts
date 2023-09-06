@@ -1,9 +1,10 @@
 import { PrismaClient } from '@prisma/client';
+import { QueryChapterLesson } from '~/types/Queries';
 
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
-  const { chapterSlug, lessonSlug } = event.context.params;
+  const { chapterSlug, lessonSlug } = event.context.params as QueryChapterLesson;
 
   const lesson = await prisma.lesson.findFirst({
     where: {
