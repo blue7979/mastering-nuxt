@@ -16,9 +16,4 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false,
   },
-  typescript: {
-    tsConfig: {
-      // compilerOptions: 'CommonJS',
-    },
-  },
 });
