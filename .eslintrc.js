@@ -7,9 +7,10 @@ module.exports = {
   extends: [
     // 'plugin:@typescript-eslint/recommended',
     // 'plugin:nuxt/recommended',
-    'plugin:vue/vue3-recommended',
     'airbnb',
     'airbnb/hooks',
+    'plugin:vue/vue3-essential',
+    '@vue/eslint-config-airbnb',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
