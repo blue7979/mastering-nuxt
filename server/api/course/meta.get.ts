@@ -1,44 +1,32 @@
 import { PrismaClient } from '@prisma/client';
-import { courseSelect } from '~/domains/course.domain';
-import {
-  OutlineChapter,
-  OutlineLesson,
-} from '~/types/course';
+import { CourseOutline, courseSelect } from '~/domains/course.domain';
 
 const prisma = new PrismaClient();
 
-export default defineEventHandler(async () => {
-  const course = await prisma.course.findFirst(courseSelect);
-  if (!course) {
-    throw createError({
-      statusCode: 404,
-      statusMessage: 'Meta data not found',
-    });
-  }
+export default defineEventHandler(
+  async (): Promise<CourseOutline> => {
+    const outline = await prisma.course.findFirst(
+      courseSelect,
+    );
 
-  // Warning!
-  // EsLint error, will be fixed by mr'SONG later.
-  // the nuxt3 video instructors getting things wrong
-  const outline: OutlineChapter[] = course.chapters.reduce((prev, next) => {
-    const lessons: OutlineLesson[] = next.lessons.map((l) => ({
-      title: l.title,
-      slug: l.slug,
-      number: next.number,
-      path: `/course/chapter/${next.slug}/lesson/${l.slug}`,
+    if (!outline) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: 'Course not found',
+      });
+    }
+
+    const chapters = outline.chapters.map((chapter) => ({
+      ...chapter,
+      lessons: chapter.lessons.map((lesson) => ({
+        ...lesson,
+        path: `/course/chapter/${chapter.slug}/lesson/${lesson.slug}`,
+      })),
     }));
 
-    const chapter = {
-      title: next.title,
-      slug: next.slug,
-      number: next.number,
-      lessons,
+    return {
+      ...outline,
+      chapters,
     };
-
-    return [...prev, chapter];
-  }, []);
-
-  return {
-    title: course.title,
-    chapters: outline,
-  };
-});
+  },
+);

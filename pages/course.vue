@@ -60,6 +60,7 @@ const resetError = async (error: Ref) => {
             </p>
             <p>
               <button
+                type="button"
                 class="hover:cursor-pointer bg-gray-500 text-white font-bold py-1 px-3 rounded"
                 @click="resetError(error)"
               >

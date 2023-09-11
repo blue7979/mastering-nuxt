@@ -3,6 +3,7 @@ import useLesson from '~/composables/useLesson';
 import { useCourseProgress } from '~/stores/courseProgress';
 
 const course = await useCourse();
+const user = useSupabaseUser();
 const route = useRoute();
 const { chapterSlug, lessonSlug } = route.params;
 const lesson = await useLesson(chapterSlug, lessonSlug);
@@ -15,7 +16,7 @@ definePageMeta({
   middleware: ['abort', 'auth'],
 });
 
-const isCompleted = computed(() => store.progress.value[chapterSlug]?.[lessonSlug] || 0);
+const isCompleted = computed(() => store.progress[chapterSlug]?.[lessonSlug] || false);
 
 const chapter = computed(() => course.value.chapters.find(
   (c) => c.slug === route.params.chapterSlug,
