@@ -1,8 +1,9 @@
+import vsharp from 'vite-plugin-vsharp';
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: {
     enabled: true,
-
     timeline: {
       enabled: true,
     },
@@ -15,5 +16,14 @@ export default defineNuxtConfig({
   ],
   supabase: {
     redirect: false,
+  },
+  nitro: {
+    prerender: {
+      // 이것만 html형태로 배포한다.
+      routes: ['/landing'],
+    },
+  },
+  vite: {
+    plugins: [vsharp()],
   },
 });

@@ -18,7 +18,8 @@
     "@pinia/nuxt": "^0.4.11",
     "@prisma/client": "^5.2.0",
     "@vueuse/nuxt": "^10.4.1",
-    "nuxt": "^3.7.0"
+    "nuxt": "^3.7.0",
+    "vite-plugin-vsharp": "^1.4.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
