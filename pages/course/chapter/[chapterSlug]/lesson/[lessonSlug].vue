@@ -8,9 +8,7 @@ const route = useRoute();
 const { chapterSlug, lessonSlug } = route.params;
 const lesson = await useLesson(chapterSlug, lessonSlug);
 const store = useCourseProgress();
-const { initialize, toggleComplete } = store;
-
-initialize();
+const { toggleComplete } = store;
 
 definePageMeta({
   middleware: ['abort', 'auth'],
