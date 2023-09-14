@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
+    "dev:https": "ODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --https --ssl-cert .keys/localhost.pem --ssl-key .keys/localhost-key.pem",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -36,6 +37,8 @@
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-vue": "^9.17.0",
-    "prisma": "^5.2.0"
+    "nuxt-security": "^0.14.4",
+    "prisma": "^5.2.0",
+    "stripe": "^13.5.0"
   }
 }

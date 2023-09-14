@@ -6,8 +6,6 @@ import screen4 from '~/assets/images/screen4.png';
 import screen5 from '~/assets/images/screen5.png';
 
 const config = useRuntimeConfig();
-console.log(config.stripeSecret);
-console.log(config.public.stripeKey);
 
 const course = await useCourse();
 const learningOutcomes = [

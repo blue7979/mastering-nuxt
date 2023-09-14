@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@pinia/nuxt',
     '@nuxtjs/supabase',
+    'nuxt-security',
   ],
   supabase: {
     redirect: false,
@@ -31,5 +32,11 @@ export default defineNuxtConfig({
   },
   vite: {
     plugins: [vsharp()],
+  },
+  security: {
+    headers: {
+      crossOriginEmbedderPolicy: 'unsafe-none',
+      contentSecurityPolicy: false,
+    },
   },
 });
